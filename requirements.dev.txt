@@ -1,4 +1,4 @@
--f requirements.txt
+-r requirements.txt
 
 flake8
 flake8-bugbear

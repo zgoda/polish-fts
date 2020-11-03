@@ -14,3 +14,9 @@ The code will be modeled after usual web application that processes requests and
 * Polish [implementation](https://github.com/Tutanchamon/pl_stemmer) of widely used Porter stemming algoithm
 
 Additionally [Eugenia Oshurko's FST-based stemmer](https://github.com/eugeniashurko/polish-stem) for Polish will be evaluated but since the implementation does not have any accompanied license it will not be included in helper's reference implementation.
+
+## Implementation
+
+As a refresher and to not go easy way this will be implemented in Twisted.
+
+It can't be any better.
