@@ -4,7 +4,6 @@ Original code: https://github.com/eugeniashurko/polish-stem
 License: ???
 """
 
-import codecs
 from csv import reader
 from itertools import repeat
 
@@ -12,7 +11,7 @@ from itertools import repeat
 def train_file_handler(filename):
     train = []
     target = []
-    with codecs.open(filename, encoding='iso-8859-2') as csvfile:
+    with open(filename, encoding='iso-8859-2', newline='') as csvfile:
         for row in reader(csvfile):
             train.append(row[0])
             target.append(row[1])
@@ -20,7 +19,7 @@ def train_file_handler(filename):
 
 
 def test_file_handler(filename):
-    with open(filename, newline='') as csvfile:
+    with open(filename, encoding='iso-8859-2', newline='') as csvfile:
         return [r[0] for r in reader(csvfile)]
 
 
