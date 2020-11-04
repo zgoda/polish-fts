@@ -1,3 +1,4 @@
 pystempel
 huey
-twisted[tls]
+Falcon
+Werkzeug[watchdog]

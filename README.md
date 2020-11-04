@@ -6,7 +6,7 @@ Intended usage model is to store only stems and then apply stemmed queries so th
 
 ## The idea
 
-The code will be modeled after usual web application that processes requests and returns responses. The application code will stay in memory for some time and will be restarted after each 100 requests (no matter read or write). Data ingress will be performed by external/background task resembling queue handler, which is the most commonly used pattern in web applications. The eggress will be direct.
+The code will be modeled after usual web application that processes requests and returns responses. The application code will stay in memory for some time and will be restarted after each 100 requests (no matter read or write) to simulate web server worker rotation. Data ingress will be performed by external/background task resembling queue handler, which is the most commonly used pattern in web applications. The eggress will be direct.
 
 ## Currently evaluated stemmers
 
@@ -14,9 +14,3 @@ The code will be modeled after usual web application that processes requests and
 * Polish [implementation](https://github.com/Tutanchamon/pl_stemmer) of widely used Porter stemming algoithm
 
 Additionally [Eugenia Oshurko's FST-based stemmer](https://github.com/eugeniashurko/polish-stem) for Polish will be evaluated but since the implementation does not have any accompanied license it will not be included in helper's reference implementation.
-
-## Implementation
-
-As a refresher and to not go easy way this will be implemented in Twisted.
-
-It can't be any better.
