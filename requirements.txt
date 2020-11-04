@@ -2,3 +2,5 @@ pystempel
 huey
 Falcon
 Werkzeug[watchdog]
+Peewee
+python-dotenv
