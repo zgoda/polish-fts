@@ -159,7 +159,6 @@ class Stemmer:
                     self.stat[e] += 1
         for k in self.stat.keys():
             self.stat[k] = float(self.stat[k]) / float(len(train))
-        # h = sorted(self.stat, key=lambda x: self.stat[x], reverse=True)
 
     def _exact_rules(self, train, target):
         alternation = {}
@@ -205,8 +204,7 @@ class Stemmer:
                             morph_changes.update({
                                 train[i][len_t - 2]: target[i][len_t - 2]
                             })
-            alt = set(ast)
-            alt = list(alt)
+            alt = list(set(ast))
             count = list(repeat(0, len(alt)))
             for k in range(len(alt)):
                 for i in range(len(ast)):
@@ -228,9 +226,8 @@ class Stemmer:
             alternation.update({e: dict(alt)})
         self.morph_changes = morph_changes
         self.alternation = alternation
-        return alternation
 
-    def _train_stemmer(self, train, target):
+    def train_stemmer(self, train, target):
         tr = list(train)
         ta = list(target)
         self._suffix_recognition(tr, ta)
@@ -250,13 +247,10 @@ class Stemmer:
                 if len(suffix) != 0:
                     if test[i][len(test[i]) - 1] == suffix[len(suffix) - 1]:
                         c_suffix.append(suffix)
-            rplcd = False
             for s in c_suffix:
                 temp = test[i]
                 test[i] = part_suffix(test[i], s)
                 if temp != test[i]:
-                    rplcd = True
-                if rplcd is True:
                     break
         return test
 
@@ -293,11 +287,11 @@ class Stemmer:
                     )
         return test
 
-    def _exact_stem(self, test):
+    def exact_stem(self, test):
         test = preproc(test, self.sub)
-        intermidiate = self._suffix_part(test)
-        intermidiate = self._apply_rules(intermidiate)
-        stem = self._suffix_remove(intermidiate)
+        intermediate = self._suffix_part(test)
+        intermediate = self._apply_rules(intermediate)
+        stem = self._suffix_remove(intermediate)
         stem = back_preproc(stem, self.sub)
         return stem
 
@@ -305,12 +299,12 @@ class Stemmer:
 def main():
     train, target = train_file_handler()
     stemmer = Stemmer()
-    stemmer._train_stemmer(train, target)
+    stemmer.train_stemmer(train, target)
 
     print("Stemmer application on test data...")
     test_data = test_file_handler()
 
-    out = stemmer._exact_stem(test_data)
+    out = stemmer.exact_stem(test_data)
 
     output_file_handler(out)
 
